@@ -34,23 +34,33 @@ st.markdown("""
 st.title('Stock Prediction')
 ticker_input=st.text_input('Enter Stock Ticker','TCS.NS')
 
-my_expander = st.expander(label='Expand me')
-with my_expander:
-    'Hello there!'
-    clicked = st.button('Click me!')
+col3, col4 = st.columns((1,1))
+with col3:
+  # df=data.Datareader(ticker_input,'yahoo')
+  # st.markdown('#')
+  print("\n")
+  df=yf.Ticker("BTC-USD")
+  df=df.history(period="max")
+  df.drop(['Dividends','Stock Splits'], inplace=True, axis=1)
+  # txt = st.text_area('Text to analyze', value='It was the best of times')
+  st.subheader('Data Of the Chosen Ticker')
+  st.write(df.describe())
+
+with col4:
+  st.markdown("####")
+  my_expander = st.expander(label='Expand : NIFTY 50 List')
+  with my_expander:
+    import pandas as pd
+    import pickle
+    URL = 'https://www1.nseindia.com/content/indices/ind_nifty50list.csv'
+    tlist = pd.read_csv(URL, index_col = 'Company Name')
+    tlist.drop(['Series','ISIN Code','Industry'], inplace=True, axis=1)
+    st.write(tlist)
     
-# df=data.Datareader(ticker_input,'yahoo')
 
-df=yf.Ticker("BTC-USD")
-df=df.history(period="max")
-df.drop(['Dividends','Stock Splits'], inplace=True, axis=1)
-
-# txt = st.text_area('Text to analyze', value='It was the best of times')
-
-st.subheader('Data Of the Chosen Ticker')
-st.write(df.describe())
 
 col1, col2 = st.columns((2,1))
+
 
 with col1:
     # Add chart #1
@@ -113,6 +123,7 @@ with col1:
     
 with col2:
     # Add chart #4
+    st.markdown("#")
     st.subheader('Closing Price Vs Time Chart with Moving Average')
     ma100=df.Close.rolling(100).mean()
     fig = plt.figure(figsize=(12,6))
@@ -120,6 +131,7 @@ with col2:
     plt.plot(df.Close,'b')
     st.pyplot(fig)
     
+    st.markdown("#")
     st.subheader('Closing Price Vs Time Chart with 100MA and 200MA')
     ma100=df.Close.rolling(100).mean()
     ma200=df.Close.rolling(200).mean()
@@ -128,10 +140,3 @@ with col2:
     plt.plot(ma200,'r')
     plt.plot(df.Close,'b')
     st.pyplot(fig)
-
-
-
-
-
-
-
