@@ -39,7 +39,7 @@ with col3:
   # df=data.Datareader(ticker_input,'yahoo')
   # st.markdown('#')
   print("\n")
-  df=yf.Ticker("BTC-USD")
+  df=yf.Ticker(ticker_input)
   df=df.history(period="max")
   df.drop(['Dividends','Stock Splits'], inplace=True, axis=1)
   # txt = st.text_area('Text to analyze', value='It was the best of times')
