@@ -41,7 +41,7 @@ with col3:
   print("\n")
   df=yf.Ticker(ticker_input)
   df=df.history(period="max")
-  df.drop(['Dividends','Stock Splits'], inplace=True, axis=1)
+#   df.drop(['Dividends','Stock Splits'], inplace=True, axis=1)
   # txt = st.text_area('Text to analyze', value='It was the best of times')
   st.subheader('Data Of the Chosen Ticker')
   st.write(df.describe())
