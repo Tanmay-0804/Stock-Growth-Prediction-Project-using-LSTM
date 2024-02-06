@@ -1,4 +1,4 @@
-Stock Price Prediction using LSTM
+#Stock Price Prediction using LSTM
 
 This project employs LSTM (Long Short-Term Memory) neural networks to predict stock prices based on historical data. The model is trained on past stock prices and is capable of forecasting future prices for a given stock.
 Introduction
@@ -14,7 +14,7 @@ Before running the code, ensure you have the following installed:
     Python 3.x
     pip (Python package manager)
 
-Installation
+#Installation
 
     Clone the repository to your local machine:
 
@@ -32,7 +32,7 @@ cd stock-price-prediction
 
 pip install -r requirements.txt
 
-Usage
+#Usage
 
     Run the main Python script:
 
